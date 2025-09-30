@@ -1,0 +1,139 @@
+﻿<UserControl x:Class="HotelManagementWPF.Views.Dashboard.DashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             mc:Ignorable="d"
+             d:DesignHeight="900" d:DesignWidth="1400">
+
+    <Grid Background="#F5F7FB" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Overview Section -->
+        <Border Background="White" CornerRadius="15" Padding="20" Margin="0 0 0 10">
+            <Border.Effect>
+                <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="0.2"/>
+            </Border.Effect>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Check-in count -->
+                <StackPanel>
+                    <TextBlock Text="Today's Check-in" FontSize="15" Foreground="#6B7280" FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding TodaysCheckInCount}" FontSize="22" FontWeight="Bold" Foreground="#111827"/>
+                </StackPanel>
+                <!-- Check-out count -->
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Today's Check-out" FontSize="15" Foreground="#6B7280" FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding TodaysCheckOutCount}" FontSize="22" FontWeight="Bold" Foreground="#111827"/>
+                </StackPanel>
+                <!-- In Hotel -->
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="In Hotel" FontSize="15" Foreground="#6B7280" FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding InHotelCount}" FontSize="22" FontWeight="Bold" Foreground="#111827"/>
+                </StackPanel>
+                <!-- Available Rooms -->
+                <StackPanel Grid.Column="3">
+                    <TextBlock Text="Available Rooms" FontSize="15" Foreground="#6B7280" FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding AvailableRoomsCount}" FontSize="22" FontWeight="Bold" Foreground="#111827"/>
+                </StackPanel>
+                <!-- Occupied Rooms -->
+                <StackPanel Grid.Column="4">
+                    <TextBlock Text="Occupied Rooms" FontSize="15" Foreground="#6B7280" FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding OccupiedRoomsCount}" FontSize="22" FontWeight="Bold" Foreground="#111827"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Room Types Summary -->
+        <UniformGrid Grid.Row="1" Columns="4" Margin="0 0 0 10">
+            <!-- Total Revenue -->
+            <Border Background="White" CornerRadius="15" Padding="20" Margin="10">
+                <StackPanel>
+                    <TextBlock Text="Total Revenue" Margin="10,0,0,0" FontWeight="Bold" FontSize="20"/>
+                    <TextBlock Text="{Binding TotalRevenue, StringFormat='₱{0:N0}'}" Margin="10,10,0,0" FontWeight="SemiBold" Foreground="Blue" FontSize="30"/>
+                </StackPanel>
+            </Border>
+            <!-- New Bookings -->
+            <Border Background="White" CornerRadius="15" Padding="20" Margin="10">
+                <StackPanel>
+                    <TextBlock Text="New Bookings" Margin="10,0,0,0" FontWeight="Bold" FontSize="20"/>
+                    <TextBlock Text="33" Margin="10,10,0,0" FontWeight="SemiBold" Foreground="Blue" FontSize="30"/>
+                </StackPanel>
+            </Border>
+            <!-- Check-In (Revenue) -->
+            <Border Background="White" CornerRadius="15" Padding="20" Margin="10">
+                <StackPanel>
+                    <TextBlock Text="Check-In" Margin="10,0,0,0" FontWeight="Bold" FontSize="20"/>
+                    <TextBlock Text="80" Margin="10,10,0,0" FontWeight="SemiBold" Foreground="Blue" FontSize="30"/>
+                </StackPanel>
+            </Border>
+            <!-- Check-Out (Revenue) -->
+            <Border Background="White" CornerRadius="15" Padding="20" Margin="10">
+                <StackPanel>
+                    <TextBlock Text="Check-Out" Margin="10,0,0,0" FontWeight="Bold" FontSize="20"/>
+                    <TextBlock Text="50" Margin="10,10,0,0" FontWeight="SemiBold" Foreground="Blue" FontSize="30"/>
+                </StackPanel>
+            </Border>
+        </UniformGrid>
+
+        <!-- Bottom Charts -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="0"/>
+                <ColumnDefinition Width="0"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Monthly Revenue Line Chart -->
+            <Border Background="White" CornerRadius="15" Padding="20" Margin="10,0,10,0" Grid.Column="0">
+                <StackPanel>
+                    <TextBlock Text="Monthly Revenue Comparison" FontWeight="Bold" FontSize="20" Margin="0,0,0,10"/>
+                    <lvc:CartesianChart Height="285" LegendLocation="Right">
+                        <lvc:CartesianChart.Series>
+                            <lvc:LineSeries 
+                                Title="2024" 
+                                Values="{Binding LastYearRevenueValues}" 
+                                Stroke="Blue" 
+                                Fill="Transparent" 
+                                PointGeometrySize="10"/>
+                            <lvc:LineSeries 
+                                Title="2025" 
+                                Values="{Binding ThisYearRevenueValues}" 
+                                Stroke="Green" 
+                                Fill="Transparent" 
+                                PointGeometrySize="10"/>
+                        </lvc:CartesianChart.Series>
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Title="Months" Labels="{Binding Months}" FontSize="15" Foreground="Black"/>
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Revenue" FontSize="15" Foreground="Black"/>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+                </StackPanel>
+            </Border>
+
+            <!-- Pie Chart for Room Revenue by Type -->
+            <Border Background="White" CornerRadius="15" Padding="20" Margin="0,0,10,0" Grid.Column="3">
+                <StackPanel>
+                    <TextBlock Text="Room Type: Monthly Revenue" FontWeight="Bold" FontSize="20" Margin="0,0,0,10"/>
+
+                    <lvc:PieChart Height="245" Series="{Binding RoomTypeRevenueSeries}" FontSize="15"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

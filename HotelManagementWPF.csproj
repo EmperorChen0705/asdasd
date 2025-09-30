@@ -1,0 +1,78 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Icons\billings.png" />
+    <None Remove="Resources\Icons\bookings.png" />
+    <None Remove="Resources\Icons\dashboard.png" />
+    <None Remove="Resources\Icons\employees.png" />
+    <None Remove="Resources\Icons\eye.png" />
+    <None Remove="Resources\Icons\guests.png" />
+    <None Remove="Resources\Icons\hotel.jpeg" />
+    <None Remove="Resources\Icons\hotel2.jpg" />
+    <None Remove="Resources\Icons\inventory.png" />
+    <None Remove="Resources\Icons\items.png" />
+    <None Remove="Resources\Icons\logo.png" />
+    <None Remove="Resources\Icons\reports.png" />
+    <None Remove="Resources\Icons\rooms.png" />
+    <None Remove="Resources\Icons\services.png" />
+    <None Remove="Resources\Icons\suppliers.png" />
+    <None Remove="Resources\Icons\users.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.9" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.0-rc.1.25451.107" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.0-rc.1.25451.107" />
+    <PackageReference Include="Microsoft.SqlServer.Server" Version="1.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="QuestPDF" Version="2025.12.0-alpha0" />
+    <PackageReference Include="Syncfusion.SfScheduler.WPF" Version="31.1.19" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Icons\dashboard.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Icons\billings.png" />
+    <Resource Include="Resources\Icons\bookings.png" />
+    <Resource Include="Resources\Icons\employees.png" />
+    <Resource Include="Resources\Icons\eye.png" />
+    <Resource Include="Resources\Icons\guests.png" />
+    <Resource Include="Resources\Icons\hotel.jpeg" />
+    <Resource Include="Resources\Icons\inventory.png" />
+    <Resource Include="Resources\Icons\items.png" />
+    <Resource Include="Resources\Icons\logo.png" />
+    <Resource Include="Resources\Icons\reports.png" />
+    <Resource Include="Resources\Icons\rooms.png" />
+    <Resource Include="Resources\Icons\services.png" />
+    <Resource Include="Resources\Icons\suppliers.png" />
+    <Resource Include="Resources\Icons\users.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Housekeeping\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Icons\hotel2.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
